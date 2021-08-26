@@ -1,32 +1,21 @@
 import couleur from "./couleur"
 import { getCallerFile, isBrowser, randomRgbColor } from "./helpers"
 
-/**
- * debug
- * @param rest
- */
-export const debugConfig = {
-  enable: true
-}
 
 const keeper = {}
-
 /**
  * debug
- * @param rest
  */
 export function debug(...rest: any[]) {
-  if (!debugConfig.enable) return
-
-  const file = getCallerFile()
-  const fileName = file.substr(file.lastIndexOf("/") + 1)
+  const callerFile = getCallerFile()
+  const fileName = callerFile.substr(callerFile.lastIndexOf("/") + 1)
   const rgb = randomRgbColor()
 
-  let selected
+  let selectedRgb
   if (keeper?.[fileName]) {
-    selected = keeper[fileName].split("-")
+    selectedRgb = keeper[fileName].split("-")
   } else {
-    selected = rgb
+    selectedRgb = rgb
     keeper[fileName] = rgb.join("-")
   }
 
@@ -37,13 +26,13 @@ export function debug(...rest: any[]) {
   if (isBrowser) {
     console.log(
       `%c ${fileName}`,
-      `color: rgb(${selected[0]}, ${selected[1]}, ${selected[2]}); font-weight: bold;`,
+      `color: rgb(${selectedRgb[0]}, ${selectedRgb[1]}, ${selectedRgb[2]}); font-weight: bold;`,
       ...rest
     )
   } else {
     return console.log(
       ` `,
-      couleur.bold(couleur.rgb(selected[0], selected[1], selected[2])(fileName)),
+      couleur.bold(couleur.rgb(selectedRgb[0], selectedRgb[1], selectedRgb[2])(fileName)),
       ``,
       ...rest
     )
