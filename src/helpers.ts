@@ -1,9 +1,12 @@
 /**
+ * Check if is browser env
+ */
+export const isBrowser: boolean = !!(typeof window != "undefined" && window.document)
+
+/**
  * retrive caller function file path
  * @credit: https://github.com/stefanpenner/get-caller-file/blob/master/index.ts
  */
-import has = Reflect.has
-
 export function getCallerFile(position = 2) {
   if (position >= Error.stackTraceLimit) {
     throw new TypeError("getCallerFile(position) requires position be less then Error.stackTraceLimit but position was: `" + position + "` and Error.stackTraceLimit was: `" + Error.stackTraceLimit + "`")
@@ -21,35 +24,6 @@ export function getCallerFile(position = 2) {
     return stack[position] ? (stack[position] as any).getFileName() : undefined
   }
 }
-
-/**
- * get random HEX color
- */
-export function randomHexColor(): string {
-  const letters = "0123456789ABCDEF"
-  let color = "#"
-  for (let i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)]
-  }
-  return color
-}
-
-/**
- * Get a random RGB color
- */
-export function randomRgbColor(): [number, number, number] {
-  const o = Math.round
-  const r = Math.random
-  const s = 255
-  return [o(r() * s), o(r() * s), o(r() * s)]
-}
-
-
-/**
- * Check if is browser env
- */
-export const isBrowser: boolean = !!(typeof window != "undefined" && window.document)
-
 
 /**
  * Transform string to RGB
@@ -70,5 +44,3 @@ export function stringToRgb(str: string):[number, number, number] {
 
   return [r, g, b]
 }
-
-
