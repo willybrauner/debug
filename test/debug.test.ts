@@ -1,7 +1,7 @@
-import { Debug } from "../src";
+import debug from "../src";
 
 describe("Debug", () => {
   it("should be defined", () => {
-    expect(Debug).toBeDefined();
+    expect(debug).toBeDefined();
   });
 });

@@ -41,3 +41,10 @@ export function randomRgbColor(): [number, number, number] {
   const s = 255
   return [o(r() * s), o(r() * s), o(r() * s)]
 }
+
+
+/**
+ * Check if is browser env
+ */
+export const isBrowser:boolean = !!(typeof window != 'undefined' && window.document)
+
