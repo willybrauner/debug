@@ -23,7 +23,7 @@
     "noUnusedParameters": true,
     "noImplicitReturns": true
   },
-  "include": ["../../src/index.ts"]
+  "include": ["./","../../src/index.ts"]
 }
 
 
