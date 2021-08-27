@@ -1,6 +1,6 @@
 import debug from "../../src"
+const log = debug("front:Menu");
 
 export const menu = () => {
-  debug("salut");
+  log("Menulog", "encore", {test: "foo"}, "bar");
 }
-

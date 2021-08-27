@@ -1,26 +1,36 @@
 import couleur from "./couleur"
-import { getCallerFile, isBrowser, stringToRgb } from "./helpers"
+import { isBrowser, stringToRgb } from "./helpers"
 
 /**
  * debug
+ *
  */
-export function debug(...rest: any[]) {
-  const callerFile = getCallerFile()
-  const fileName = callerFile.substr(callerFile.lastIndexOf("/") + 1)
-  const rgb = stringToRgb(fileName)
+export const debug = (namespace?: string) => (...rest: any[]): void =>
+{
+  const rgb = stringToRgb(namespace)
+  const showLog = (value: string): boolean =>
+    value.includes(":*")
+      ? namespace.startsWith( value.split(":*")[0])
+      : value === namespace || value === "true"
 
-  if (isBrowser) {
-    return localStorage.getItem("debug") === "true" && console.log(
-      `%c ${fileName}`,
-      `color: rgb(${rgb[0]}, ${rgb[1]}, ${rgb[2]}); font-weight: bold;`,
+  if (isBrowser)
+  {
+    showLog(localStorage.getItem("debug"))
+    &&
+    console.log(
+      namespace && `%c${namespace}`, `color: rgb(${rgb[0]}, ${rgb[1]}, ${rgb[2]}); font-weight: bold;`,
       ...rest
     )
-  } else {
-    return process.env.DEBUG === "true" && console.log(
-      ` `,
-      couleur.bold(couleur.rgb(rgb[0], rgb[1], rgb[2])(fileName)),
-      ``,
+  }
+  else
+  {
+    showLog(process.env.DEBUG)
+    &&
+    console.log(
+      `  `,
+      namespace && couleur.bold(couleur.rgb(rgb[0], rgb[1], rgb[2])(namespace)),
       ...rest
     )
   }
 }
+

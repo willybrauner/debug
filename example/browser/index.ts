@@ -1,6 +1,7 @@
-import debug from "../../src"
 import { menu } from "./Menu"
-debug("salut");
-debug("other log", {test: "foo"});
+import debug from "../../src"
+const log = debug("front:index");
 
+log("index other log", {props: "foo"});
+log("smdlsdsmld");
 menu()

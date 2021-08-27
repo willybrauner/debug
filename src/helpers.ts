@@ -25,6 +25,7 @@ export function getCallerFile(position = 2) {
   }
 }
 
+
 /**
  * Transform string to RGB
  *
