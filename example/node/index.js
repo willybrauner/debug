@@ -1,13 +1,20 @@
-const debug = require("../../dist")("config:coucou-node")
-require("../../dist")("config:hello")("coucou ceci est un log test",
-  { test: true })
+const debug = require("../../dist")
+const str = "hello debug!"
 
-const test = {
-  test: true,
-  tes: true,
-  tet: true,
-  slsl: true,
-  slslqsmlqmsl: true
-}
-
-require("../../dist")("config:my-task")(test)
+debug("01-namespace")(str)
+debug("02-namespace")(str)
+debug("03-namespace")(str)
+debug("04-namespace")(str)
+debug("05-namespace")(str)
+debug("06-namespace")(str)
+debug("07-namespace")(str)
+debug("08-namespace")(str)
+debug("09-namespace")(str)
+debug("10-namespace")(str)
+debug("11-namespace")(str)
+debug("12-namespace")(str)
+debug("13-namespace")(str)
+debug("14-namespace")(str)
+console.log("")
+console.log("")
+console.log("")

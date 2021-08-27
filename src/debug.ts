@@ -3,11 +3,11 @@ import { isBrowser, stringToRgb } from "./helpers"
 
 /**
  * debug
- *
  */
 export const debug = (namespace?: string) => (...rest: any[]): void =>
 {
   const rgb = stringToRgb(namespace)
+
   const showLog = (value: string): boolean =>
     value.includes(":*")
       ? namespace.startsWith( value.split(":*")[0])
