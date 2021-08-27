@@ -5,3 +5,6 @@ src
 test
 stories
 example
+.babelrc
+.github
+.prettierrc
