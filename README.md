@@ -9,6 +9,11 @@ Tiny debug tool (~500 bytes) for terminal and browser inspired by [visionmedia/d
 
 ![](screen.jpg)
 
+## Motivation 
+
+`@wbe/debug` as been build in order to be as light as possible and for the personal challenge to coding 
+a debugger, for terminal and browser, as the same way of the great visionmedia/debug tool.
+
 ## Installation
 
 ```shell script
