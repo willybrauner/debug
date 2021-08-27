@@ -8,3 +8,6 @@ example
 .babelrc
 .github
 .prettierrc
+screen.jpg
+tsconfig.json
+vite.config.ts
