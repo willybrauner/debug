@@ -1,7 +1,7 @@
 {
   "name": "@wbe/debug",
   "version": "0.1.0",
-  "description": "Tiny debug tool for terminal and browsers",
+  "description": "Tiny debug tool (~500 bytes) for terminal and browser inspired by visionmedia/debug API.",
   "author": "Willy Brauner",
   "license": "MIT",
   "types": "dist/index",
@@ -9,7 +9,6 @@
   "main": "./dist/index.cjs",
   "module": "./dist/index.module.js",
   "unpkg": "./dist/index.umd.js",
-  "private": true,
   "sideEffects": false,
   "repository": {
     "type": "git",
@@ -22,6 +21,7 @@
     "dev": "microbundle --watch",
     "dev:browser": "vite",
     "dev:node": "DEBUG=true node example/node/index.js",
+    "publish:all": "npm run build && npm publish",
     "test": "jest"
   },
   "devDependencies": {
@@ -37,7 +37,14 @@
     "vite": "^2.5.1"
   },
   "keywords": [
-    "debug"
+    "debug",
+    "debugger",
+    "log",
+    "logger",
+    "console.log",
+    "tool",
+    "nodejs",
+    "browser"
   ],
   "publishConfig": {
     "access": "public"
