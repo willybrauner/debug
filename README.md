@@ -49,7 +49,7 @@ debug('foo'); // config:task foo"
 ```shell
 DEBUG=config:* node file.js  
 ```
-Every debug function declaration with `config:{somestring}` declared as namespace will be printed.
+Every debug function declaration with namespace `config:{somestring}` will be printed.
 
 
 ## debug in browser
@@ -74,7 +74,7 @@ debug('bar'); // foo bar"
 import debug from "@wbe/debug"
 const log = debug('foo');
 
-debug("bar") // foo bar"
+log("bar") // foo bar"
 
 ```
 ## Example
