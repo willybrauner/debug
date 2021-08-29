@@ -1,1 +1,1 @@
-export {debug as default } from "./debug"
+export { debug as default } from "./debug"
