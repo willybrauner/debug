@@ -15,18 +15,25 @@
     "url": "https://github.com/willybrauner/libraries.git"
   },
   "scripts": {
-    "build": "npm run clean && npm run compile",
+    "build": "npm run clean && microbundle",
     "clean": "rm -rf ./dist && rm -rf tsconfig.tsbuildinfo",
-    "compile": "microbundle",
     "dev": "microbundle --watch",
     "dev:browser": "vite",
     "dev:node": "DEBUG=true node example/node/index.js",
     "publish:all": "npm run build && npm publish",
-    "test": "jest"
+    "test": "jest",
+    "size": "size-limit"
   },
+  "size-limit": [
+    {
+      "limit": "560 B",
+      "path": "dist/index.js"
+    }
+  ],
   "devDependencies": {
     "@babel/preset-env": "^7.15.0",
     "@babel/preset-typescript": "^7.15.0",
+    "@size-limit/file": "^5.0.3",
     "@types/jest": "^27.0.1",
     "@types/node": "^16.7.1",
     "jest": "^27.0.6",
@@ -48,5 +55,8 @@
   ],
   "publishConfig": {
     "access": "public"
+  },
+  "dependencies": {
+    "size-limit": "^5.0.3"
   }
 }

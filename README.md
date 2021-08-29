@@ -3,6 +3,7 @@
 Tiny debug tool (~500 bytes) for terminal and browser inspired by [visionmedia/debug](https://github.com/visionmedia/debug) API.
 
 ![](https://img.shields.io/npm/v/@wbe/debug/latest.svg)
+![](https://github.com/willybrauner/debug/workflows/CI/badge.svg)
 ![](https://img.shields.io/bundlephobia/minzip/@wbe/debug.svg)
 ![](https://img.shields.io/npm/dt/@wbe/debug.svg)
 ![](https://img.shields.io/npm/l/@wbe/debug.svg)
