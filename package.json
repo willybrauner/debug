@@ -19,7 +19,7 @@
     "clean": "rm -rf ./dist && rm -rf tsconfig.tsbuildinfo",
     "dev": "microbundle --watch",
     "dev:browser": "vite",
-    "dev:node": "DEBUG=true node example/node/index.js",
+    "dev:node": "DEBUG=* node example/node/index.js",
     "publish:all": "npm run build && npm publish",
     "test": "jest",
     "size": "size-limit"
