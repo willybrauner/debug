@@ -24,7 +24,7 @@ $ npm install -s @wbe/debug
 ## debug node
 
 ```shell
-DEBUG=true node file.js  
+DEBUG=* node file.js  
 ```
 ```js
 const debug = require("@wbe/debug")
@@ -67,7 +67,6 @@ localStorage.debug = "foo"
 Use debug on js script:
 
 ```js
-
 const debug = require("@wbe/debug")("foo")
 debug('bar'); // foo bar"
 

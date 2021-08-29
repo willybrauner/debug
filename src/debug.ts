@@ -11,7 +11,7 @@ export const debug = (namespace?: string) => (...rest: any[]): void =>
   const showLog = (value: string): boolean =>
     value?.includes(":*")
       ? namespace.startsWith( value.split(":*")[0])
-      : value === namespace || value === "true"
+      : value === namespace || value === "*"
 
   if (isBrowser)
   {
