@@ -24,6 +24,12 @@
     "publish:all": "npm run build && npm publish",
     "test": "jest"
   },
+  "size-limit": [
+    {
+      "limit": "630 B",
+      "path": "dist/indexjs"
+    }
+  ],
   "devDependencies": {
     "@babel/preset-env": "^7.15.0",
     "@babel/preset-typescript": "^7.15.0",
@@ -48,5 +54,8 @@
   ],
   "publishConfig": {
     "access": "public"
+  },
+  "dependencies": {
+    "size-limit": "^5.0.3"
   }
 }
