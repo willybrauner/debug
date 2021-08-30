@@ -3,4 +3,5 @@ node_modules
 .idea
 tsconfig.tsbuildinfo
 .cache
+.parcel-cache
 dist

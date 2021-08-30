@@ -4,7 +4,7 @@
   "description": "Tiny debug tool (~500 bytes) for terminal and browser inspired by visionmedia/debug API.",
   "author": "Willy Brauner",
   "license": "MIT",
-  "types": "dist/index",
+  "types": "dist/index.d.ts",
   "source": "src/index.ts",
   "main": "./dist/index.cjs",
   "module": "./dist/index.module.js",
@@ -18,7 +18,7 @@
     "build": "npm run clean && microbundle",
     "clean": "rm -rf ./dist && rm -rf tsconfig.tsbuildinfo",
     "dev": "microbundle --watch",
-    "dev:browser": "vite",
+    "dev:browser": "parcel example/browser/index.html --dist-dir example/browser/dist",
     "dev:node": "DEBUG=* node example/node/index.js",
     "publish:all": "npm run build && npm publish",
     "test": "jest",
@@ -38,11 +38,11 @@
     "@types/node": "^16.7.1",
     "jest": "^27.0.6",
     "microbundle": "^0.13.3",
+    "parcel": "^2.0.0-rc.0",
     "size-limit": "^5.0.3",
     "ts-jest": "^27.0.5",
     "ts-node": "^10.2.1",
-    "typescript": "^4.3.5",
-    "vite": "^2.5.1"
+    "typescript": "^4.3.5"
   },
   "keywords": [
     "debug",
