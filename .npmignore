@@ -1,5 +1,6 @@
 .idea
 .cache
+.parcel-cache
 node_modules
 src
 test
@@ -10,4 +11,3 @@ example
 .prettierrc
 screen.jpg
 tsconfig.json
-vite.config.ts

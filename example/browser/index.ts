@@ -1,6 +1,5 @@
 import { menu } from "./Menu"
-import debug from "../../src"
-const log = debug("front:index");
+const log = require("../../dist")("front:index");
 
 log("index log", {props: "foo"});
 log("test 2");

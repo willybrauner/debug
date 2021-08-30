@@ -1,4 +1,4 @@
-import debug from "../../src"
+import debug from "../../dist"
 const log = debug("front:Menu");
 
 export const menu = () => {

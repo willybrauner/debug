@@ -2,7 +2,7 @@
   "compilerOptions": {
     "module": "commonjs",
     "target": "esnext",
-    "outDir": "./dist",
+    "outDir": "dist",
     "rootDir": "../../",
     "composite": false,
     "lib": ["dom", "es2015"],
@@ -23,7 +23,7 @@
     "noUnusedParameters": true,
     "noImplicitReturns": true
   },
-  "include": ["./","../../src/index.ts"]
+  "include": ["./","../../dist"]
 }
 
 

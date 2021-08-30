@@ -34,15 +34,15 @@ debug('foo'); // foo"
 `process.env.DEBUG` value can be defined as a specific namespace too:
 
 ```shell
-DEBUG=config:my-task node file.js  
+DEBUG=namespace node file.js  
 ```
 
-Only debug function declaration with `config:my-task` declared as namespace will be printed in the console:
+Only debug function declaration with `namespace` declared as namespace will be printed in the console:
 
 ```js
 // add the namspace as returned function paramater
-const debug = require("@wbe/debug")("config:task")
-debug('foo'); // config:task foo"
+const debug = require("@wbe/debug")("namespace")
+debug('foo'); // namespace foo"
 ```
 
 `process.env.DEBUG` value accept one glob parameter level: 
