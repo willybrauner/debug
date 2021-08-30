@@ -6,9 +6,7 @@
   "license": "MIT",
   "types": "dist/index.d.ts",
   "source": "src/index.ts",
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.module.js",
-  "unpkg": "./dist/index.umd.js",
+  "main": "./dist/index.js",
   "sideEffects": false,
   "repository": {
     "type": "git",
