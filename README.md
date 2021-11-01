@@ -12,8 +12,8 @@ Tiny debug tool (~500 bytes) for terminal and browser inspired by [visionmedia/d
 
 ## Motivation 
 
-`@wbe/debug` as been build in order to be as light as possible and for the personal challenge to coding 
-a debugger, for terminal and browser, as the same way of the great visionmedia/debug tool.
+`@wbe/debug` was built in order to be as light as possible and for the personal challenge to coding 
+a debugger, for terminal and browser, as the same way as the great visionmedia/debug tool.
 
 ## Installation
 
@@ -28,7 +28,7 @@ DEBUG=* node file.js
 ```
 ```js
 const debug = require("@wbe/debug")
-debug('foo'); // foo"
+debug('foo'); // "foo"
 ```
 
 `process.env.DEBUG` value can be defined as a specific namespace too:
@@ -42,21 +42,21 @@ Only debug function declaration with `namespace` declared as namespace will be p
 ```js
 // add the namspace as returned function paramater
 const debug = require("@wbe/debug")("namespace")
-debug('foo'); // namespace foo"
+debug('foo'); // "namespace foo"
 ```
 
 `process.env.DEBUG` value accept one glob parameter level: 
 
 ```shell
-DEBUG=config:* node file.js  
+DEBUG=config:* node file.js
 ```
 Every debug function declaration with namespace `config:{somestring}` will be printed.
 
 
 ## debug in browser
 
-In the same way of nodejs usage, `debug` is browser compatible with the same API. The only difference is 
-we need to set the current namespace in localStorage.  
+In the same way as nodejs usage, `debug` is browser compatible with the same API. The only difference is 
+we need to set the current namespace in localStorage.
 
 Add on your browser localStorage: 
 
@@ -64,17 +64,17 @@ Add on your browser localStorage:
 localStorage.debug = "foo"
 ```
 
-Use debug on js script:
+Use debug in javascript:
 
 ```js
 const debug = require("@wbe/debug")("foo")
-debug('bar'); // foo bar"
+debug('bar'); // "foo bar"
 
 // or with es6 import
 import debug from "@wbe/debug"
 const log = debug('foo');
 
-log("bar") // foo bar"
+log("bar") // "foo bar"
 
 ```
 ## Example
