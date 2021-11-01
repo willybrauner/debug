@@ -27,7 +27,6 @@ export const debug = (namespace?: string) => (...rest: any[]): void =>
     showLog(process.env.DEBUG)
     &&
     console.log(
-      `  `,
       namespace && couleur.bold(couleur.rgb(rgb[0], rgb[1], rgb[2])(namespace)),
       ...rest
     )
