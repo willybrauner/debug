@@ -27,12 +27,6 @@
   "publishConfig": {
     "access": "public"
   },
-  "size-limit": [
-    {
-      "limit": "560 B",
-      "path": "dist/index.js"
-    }
-  ],
   "scripts": {
     "build": "npm run clean && microbundle",
     "build:watch": "microbundle watch --no-sourcemap",
@@ -40,14 +34,12 @@
     "dev": "microbundle --watch",
     "dev:example-browser": "pnpm --filter ./examples/browser run dev",
     "dev:example-node": "DEBUG=* node examples/node/index.js",
-    "publish:all": "npm run build && npm publish",
-    "test": "jest",
-    "size": "size-limit"
+    "pre-publish": "npm run build && npm run test",
+    "test:watch": "vitest",
+    "test": "vitest --run"
   },
   "devDependencies": {
-    "@size-limit/file": "^8.1.0",
     "microbundle": "^0.15.1",
-    "size-limit": "^8.1.0",
     "typescript": "^4.8.4",
     "vitest": "^0.24.3",
     "@types/node": "^18.11.2"
