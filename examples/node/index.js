@@ -1,4 +1,4 @@
-const debug = require("../../dist")
+const debug = require("@wbe/debug")
 const str = "hello debug!"
 
 debug("01-namespace")(str)

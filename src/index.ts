@@ -1,5 +1,5 @@
 /**
- * Export to be eable to require module in node/browser env
+ * Export to be able to require module in node/browser env
  *
  * Usage ex:
  *
@@ -9,7 +9,7 @@
  *
  */
 import { debug } from "./debug"
-module.exports = debug
+if (typeof module != "undefined") module.exports = debug
 
 /**
  * Export as es6 module

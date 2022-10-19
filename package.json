@@ -4,43 +4,16 @@
   "description": "Tiny debug tool (~500 bytes) for terminal and browser inspired by visionmedia/debug API.",
   "author": "Willy Brauner",
   "license": "MIT",
-  "types": "dist/index.d.ts",
+  "type": "commonjs",
   "source": "src/index.ts",
   "main": "./dist/index.js",
+  "module": "./dist/index.module.js",
+  "unpkg": "./dist/index.umd.js",
+  "types": "dist/index.d.ts",
   "sideEffects": false,
   "repository": {
     "type": "git",
     "url": "https://github.com/willybrauner/debug.git"
-  },
-  "scripts": {
-    "build": "npm run clean && microbundle",
-    "clean": "rm -rf ./dist && rm -rf tsconfig.tsbuildinfo",
-    "dev": "microbundle --watch",
-    "dev:browser": "parcel example/browser/index.html --dist-dir example/browser/dist",
-    "dev:node": "DEBUG=* node example/node/index.js",
-    "publish:all": "npm run build && npm publish",
-    "test": "jest",
-    "size": "size-limit"
-  },
-  "size-limit": [
-    {
-      "limit": "560 B",
-      "path": "dist/index.js"
-    }
-  ],
-  "devDependencies": {
-    "@babel/preset-env": "^7.15.0",
-    "@babel/preset-typescript": "^7.15.0",
-    "@size-limit/file": "^5.0.3",
-    "@types/jest": "^27.0.1",
-    "@types/node": "^16.7.1",
-    "jest": "^27.0.6",
-    "microbundle": "^0.13.3",
-    "parcel": "^2.0.0-rc.0",
-    "size-limit": "^5.0.3",
-    "ts-jest": "^27.0.5",
-    "ts-node": "^10.2.1",
-    "typescript": "^4.3.5"
   },
   "keywords": [
     "debug",
@@ -48,11 +21,31 @@
     "log",
     "logger",
     "console.log",
-    "tool",
     "nodejs",
     "browser"
   ],
   "publishConfig": {
     "access": "public"
+  },
+  "scripts": {
+    "build": "npm run clean && microbundle",
+    "build:watch": "microbundle watch --no-sourcemap",
+    "clean": "rm -rf ./dist && rm -rf tsconfig.tsbuildinfo",
+    "dev": "microbundle --watch",
+    "dev:example-browser": "pnpm --filter ./examples/browser run dev",
+    "dev:example-node": "DEBUG=* node examples/node/index.js",
+    "pre-publish": "npm run build && npm run test",
+    "test:watch": "vitest",
+    "test": "vitest --run"
+  },
+  "devDependencies": {
+    "microbundle": "^0.15.1",
+    "typescript": "^4.8.4",
+    "vitest": "^0.24.3",
+    "@types/node": "^18.11.2"
+  },
+
+  "prettier": {
+    "semi": false
   }
 }
