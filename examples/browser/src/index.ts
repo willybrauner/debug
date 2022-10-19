@@ -1,5 +1,6 @@
 import { menu } from "./Menu"
-const log = require("../../dist")("front:index");
+import debug from "@wbe/debug"
+const log = debug("front:index")
 
 log("index log", {props: "foo"});
 log("test 2");

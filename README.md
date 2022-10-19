@@ -81,12 +81,12 @@ log("bar") // "foo bar"
 
 Test browser example:
 `````shell
-npm i && npm run dev:browser
+npm i && npm run dev:example-browser
 `````
 
 Test node example:
 `````shell
-npm i && npm run dev:node
+npm i && npm run dev:example-dev
 `````
 
 ## Credits
