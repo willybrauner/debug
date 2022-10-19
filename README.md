@@ -12,13 +12,13 @@ Tiny debug tool (~500 bytes) for terminal and browser inspired by [visionmedia/d
 
 ## Motivation 
 
-`@wbe/debug` was built in order to be as light as possible and for the personal challenge to coding 
-a debugger, for terminal and browser, as the same way as the great visionmedia/debug tool.
+`@wbe/debug` was built in order to be as light as possible for terminal and browser, 
+as the same way as the great visionmedia/debug tool.
 
 ## Installation
 
 ```shell script
-$ npm install -s @wbe/debug
+$ npm i @wbe/debug
 ```
 
 ## debug node
@@ -45,13 +45,12 @@ const debug = require("@wbe/debug")("namespace")
 debug('foo'); // "namespace foo"
 ```
 
-`process.env.DEBUG` value accept one glob parameter level: 
+`process.env.DEBUG` value accept "one glob parameter level":
 
 ```shell
 DEBUG=config:* node file.js
 ```
-Every debug function declaration with namespace `config:{somestring}` will be printed.
-
+Every debug function declaration with namespace `config:{somestring}` will be logged.
 
 ## debug in browser
 
@@ -67,27 +66,29 @@ localStorage.debug = "foo"
 Use debug in javascript:
 
 ```js
-const debug = require("@wbe/debug")("foo")
-debug('bar'); // "foo bar"
-
-// or with es6 import
+// es6 import
 import debug from "@wbe/debug"
 const log = debug('foo');
-
 log("bar") // "foo bar"
 
+// commonjs import
+const debug = require("@wbe/debug")("foo")
+debug('bar'); // "foo bar"
 ```
-## Example
+## Examples
 
-Test browser example:
-`````shell
-npm i && npm run dev:example-browser
-`````
+Install dependencies:
+```shell
+pnpm i
+```
 
-Test node example:
-`````shell
-npm i && npm run dev:example-dev
-`````
+Start example:
+```shell
+# browser example
+npm run dev:example-browser
+# node example
+npm run dev:example-dev
+```
 
 ## Credits
 
