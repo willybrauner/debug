@@ -23,3 +23,4 @@ if (typeof module != "undefined") module.exports = debug
  *
  */
 export { debug as default } from "./debug"
+export { couleur } from "./couleur"

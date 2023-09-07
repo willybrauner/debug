@@ -52,4 +52,4 @@ function initCouleur() {
 }
 
 const couleur = initCouleur()
-export default couleur
+export { couleur }

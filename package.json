@@ -4,12 +4,10 @@
   "description": "Tiny debug tool (~500 bytes) for terminal and browser inspired by visionmedia/debug API.",
   "author": "Willy Brauner",
   "license": "MIT",
-  "type": "commonjs",
-  "source": "src/index.ts",
-  "main": "./dist/index.js",
-  "module": "./dist/index.module.js",
-  "unpkg": "./dist/index.umd.js",
-  "types": "dist/index.d.ts",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "sideEffects": false,
   "repository": {
     "type": "git",
@@ -28,10 +26,9 @@
     "access": "public"
   },
   "scripts": {
-    "build": "npm run clean && microbundle",
-    "build:watch": "microbundle watch --no-sourcemap",
+    "build": "tsup",
+    "build:watch": "tsup --watch --sourcemap",
     "clean": "rm -rf ./dist && rm -rf tsconfig.tsbuildinfo",
-    "dev": "microbundle --watch",
     "dev:example-browser": "pnpm --filter ./examples/browser run dev",
     "dev:example-node": "DEBUG=* node examples/node/index.js",
     "pre-publish": "npm run build && npm run test",
@@ -39,12 +36,22 @@
     "test": "vitest --run"
   },
   "devDependencies": {
-    "microbundle": "^0.15.1",
+    "@size-limit/preset-small-lib": "^8.2.4",
+    "@types/node": "^18.11.2",
+    "size-limit": "^9.0.0",
+    "terser": "^5.19.4",
+    "tsup": "^7.2.0",
     "typescript": "^4.8.4",
-    "vitest": "^0.24.3",
-    "@types/node": "^18.11.2"
+    "vitest": "^0.24.3"
   },
   "prettier": {
     "semi": false
-  }
+  },
+  "size-limit": [
+    {
+      "name": "@wbe/debug",
+      "path": "dist/index.js",
+      "limit": "500 B"
+    }
+  ]
 }
