@@ -1,4 +1,4 @@
-import couleur from "./couleur"
+import { couleur } from "./couleur"
 import { isBrowser, stringToRgb } from "./helpers"
 
 /**
