@@ -32,7 +32,7 @@ importers:
 
   examples/browser:
     dependencies:
-      '@wbe/debug':
+      '@cher-ami/debug':
         specifier: ^1.1.0
         version: link:../..
     devDependencies:
@@ -42,7 +42,7 @@ importers:
 
   examples/node:
     dependencies:
-      '@wbe/debug':
+      '@cher-ami/debug':
         specifier: latest
         version: link:../..
 

@@ -3,7 +3,7 @@
  *
  * Usage ex:
  *
- *  const debug = require("@wbe/debug")("namespace")
+ *  const debug = require("@cher-ami/debug")("namespace")
  *  // ...
  *  debug("...")
  *
@@ -16,7 +16,7 @@ if (typeof module != "undefined") module.exports = debug
  *
  * Usage ex:
  *
- *  import debug from "@wbe/debug"
+ *  import debug from "@cher-ami/debug"
  *  const log = debug("namespace")
  *  // ...
  *  log("...")

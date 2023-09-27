@@ -1,24 +1,26 @@
-# @wbe/debug
+# debug
+
+> This repo is a fork of [@wbe/debug](https://github.com/willybrauner/debug)
 
 Tiny debug tool (~500 bytes) for terminal and browser inspired by [visionmedia/debug](https://github.com/visionmedia/debug) API.
 
-![](https://img.shields.io/npm/v/@wbe/debug/latest.svg)
+![](https://img.shields.io/npm/v/@cher-ami/debug/latest.svg)
 ![](https://github.com/willybrauner/debug/workflows/CI/badge.svg)
-![](https://img.shields.io/bundlephobia/minzip/@wbe/debug.svg)
-![](https://img.shields.io/npm/dt/@wbe/debug.svg)
-![](https://img.shields.io/npm/l/@wbe/debug.svg)
+![](https://img.shields.io/bundlephobia/minzip/@cher-ami/debug.svg)
+![](https://img.shields.io/npm/dt/@cher-ami/debug.svg)
+![](https://img.shields.io/npm/l/@cher-ami/debug.svg)
 
 ![](screen.jpg)
 
 ## Motivation 
 
-`@wbe/debug` was built in order to be as light as possible for terminal and browser, 
+`@cher-ami/debug` was built in order to be as light as possible for terminal and browser, 
 as the same way as the great visionmedia/debug tool.
 
 ## Installation
 
 ```shell script
-$ npm i @wbe/debug
+$ npm i @cher-ami/debug
 ```
 
 ## debug node
@@ -27,7 +29,7 @@ $ npm i @wbe/debug
 DEBUG=* node file.js  
 ```
 ```js
-const debug = require("@wbe/debug")
+const debug = require("@cher-ami/debug")
 debug('foo'); // "foo"
 ```
 
@@ -41,7 +43,7 @@ Only debug function declaration with `namespace` declared as namespace will be p
 
 ```js
 // add the namspace as returned function paramater
-const debug = require("@wbe/debug")("namespace")
+const debug = require("@cher-ami/debug")("namespace")
 debug('foo'); // "namespace foo"
 ```
 
@@ -67,12 +69,12 @@ Use debug in javascript:
 
 ```js
 // es6 import
-import debug from "@wbe/debug"
+import debug from "@cher-ami/debug"
 const log = debug('foo');
 log("bar") // "foo bar"
 
 // commonjs import
-const debug = require("@wbe/debug")("foo")
+const debug = require("@cher-ami/debug")("foo")
 debug('bar'); // "foo bar"
 ```
 ## Examples
@@ -92,7 +94,7 @@ npm run dev:example-dev
 
 ## Credits
 
-Willy Brauner
+[Willy Brauner](https://willybrauner.com)
 
 ## Licence
 

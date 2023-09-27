@@ -1,5 +1,5 @@
 {
-  "name": "@wbe/debug",
+  "name": "@cher-ami/debug",
   "version": "1.2.0",
   "description": "Tiny debug tool (~500 bytes) for terminal and browser inspired by visionmedia/debug API.",
   "author": "Willy Brauner",
@@ -11,7 +11,7 @@
   "sideEffects": false,
   "repository": {
     "type": "git",
-    "url": "https://github.com/willybrauner/debug.git"
+    "url": "https://github.com/cher-ami/debug.git"
   },
   "keywords": [
     "debug",
@@ -49,7 +49,7 @@
   },
   "size-limit": [
     {
-      "name": "@wbe/debug",
+      "name": "@cher-ami/debug",
       "path": "dist/index.js",
       "limit": "500 B"
     }

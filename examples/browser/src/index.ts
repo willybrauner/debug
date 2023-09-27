@@ -1,5 +1,5 @@
 import {menu} from "./Menu"
-import debug, {couleur} from "@wbe/debug"
+import debug, {couleur} from "@cher-ami/debug"
 
 const log = debug("front:index")
 

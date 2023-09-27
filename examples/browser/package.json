@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@wbe/debug": "^1.1.0"
+    "@cher-ami/debug": "^1.1.0"
   },
   "devDependencies": {
     "vite": "^3.1.8"
