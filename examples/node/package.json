@@ -10,6 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@wbe/debug": "latest"
+    "@wbe/debug": "workspace:*"
   }
 }
