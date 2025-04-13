@@ -1,10 +1,9 @@
 import { couleur } from "./couleur"
 import { isBrowser, stringToRgb } from "./helpers"
 
-const safeLog = (...args: any[]) => {
-  new Function("console", "args", "console.log(...args)")(console, args)
-}
-
+/**
+ * debug
+ */
 // prettier-ignore
 export const debug = (namespace?: string) => (...rest: any[]): void =>
 {
@@ -19,7 +18,7 @@ export const debug = (namespace?: string) => (...rest: any[]): void =>
   {
     showLog(localStorage.getItem("debug"))
     &&
-    safeLog(
+    console.log(
       namespace && `%c${namespace}`, `color: rgb(${rgb[0]}, ${rgb[1]}, ${rgb[2]})`,
       ...rest
     )
@@ -28,7 +27,7 @@ export const debug = (namespace?: string) => (...rest: any[]): void =>
   {
     showLog(process.env.DEBUG)
     &&
-    safeLog(
+    console.log(
       namespace && couleur.bold(couleur.rgb(rgb[0], rgb[1], rgb[2])(namespace)),
       ...rest
     )
