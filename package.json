@@ -34,7 +34,8 @@
     "pre-publish": "npm run build && npm run test",
     "test:watch": "vitest",
     "test": "vitest --run",
-    "ncu": "find . -name 'node_modules' -prune -o -name 'package.json' -execdir ncu -u ';'"
+    "ncu": "find . -name 'node_modules' -prune -o -name 'package.json' -execdir ncu -u ';'",
+    "size": "size-limit"
   },
   "devDependencies": {
     "@size-limit/preset-small-lib": "^11.2.0",
