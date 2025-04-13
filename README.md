@@ -13,7 +13,7 @@ Tiny debug tool (~500 bytes) for terminal and browser inspired by [debug-js/debu
 ## Motivation
 
 `@wbe/debug` was built in order to be as light as possible for terminal and browser,
-as the same way as the great visionmedia/debug tool.
+as the same way as the great debug-js/debug tool.
 
 ## Installation
 

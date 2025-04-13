@@ -1,4 +1,4 @@
-const debug = require("@wbe/debug")
+import debug from "@wbe/debug"
 const str = "hello debug!"
 
 debug("01-namespace")(str)
