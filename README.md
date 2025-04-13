@@ -10,9 +10,9 @@ Tiny debug tool (~500 bytes) for terminal and browser inspired by [debug-js/debu
 
 ![](screen.jpg)
 
-## Motivation 
+## Motivation
 
-`@wbe/debug` was built in order to be as light as possible for terminal and browser, 
+`@wbe/debug` was built in order to be as light as possible for terminal and browser,
 as the same way as the great visionmedia/debug tool.
 
 ## Installation
@@ -24,25 +24,29 @@ $ npm i @wbe/debug
 ## debug node
 
 ```shell
-DEBUG=* node file.js  
+DEBUG=* node file.js
 ```
+
+file.js:
+
 ```js
-const debug = require("@wbe/debug")
-debug('foo'); // "foo"
+import debug from "@wbe/debug"
+const log = debug("namespace")
+log("hello") // "namespace hello"
 ```
 
 `process.env.DEBUG` value can be defined as a specific namespace too:
 
 ```shell
-DEBUG=namespace node file.js  
+DEBUG=namespace-1 node file.js
 ```
 
-Only debug function declaration with `namespace` declared as namespace will be printed in the console:
+Only debug function declaration with `namespace-1` declared as namespace will be printed in the console:
 
 ```js
-// add the namspace as returned function paramater
-const debug = require("@wbe/debug")("namespace")
-debug('foo'); // "namespace foo"
+import debug from "@wbe/debug"
+const log = debug("namespace-1")
+log("hello") // "namespace-1 hello"
 ```
 
 `process.env.DEBUG` value accept "one glob parameter level":
@@ -50,14 +54,15 @@ debug('foo'); // "namespace foo"
 ```shell
 DEBUG=config:* node file.js
 ```
+
 Every debug function declaration with namespace `config:{somestring}` will be logged.
 
 ## debug in browser
 
-In the same way as nodejs usage, `debug` is browser compatible with the same API. The only difference is 
+In the same way as nodejs usage, `debug` is browser compatible with the same API. The only difference is
 we need to set the current namespace in localStorage.
 
-Add on your browser localStorage: 
+Add on your browser localStorage:
 
 ```shell
 localStorage.debug = "foo"
@@ -68,21 +73,20 @@ Use debug in javascript:
 ```js
 // es6 import
 import debug from "@wbe/debug"
-const log = debug('foo');
+const log = debug("foo")
 log("bar") // "foo bar"
-
-// commonjs import
-const debug = require("@wbe/debug")("foo")
-debug('bar'); // "foo bar"
 ```
+
 ## Examples
 
 Install dependencies:
+
 ```shell
 pnpm i
 ```
 
 Start example:
+
 ```shell
 # browser example
 npm run dev:example-browser
@@ -97,6 +101,3 @@ Willy Brauner
 ## Licence
 
 MIT
-
-
-
