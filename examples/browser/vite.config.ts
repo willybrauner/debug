@@ -6,6 +6,6 @@ console.log("isProd", isProd)
 export default defineConfig({
   esbuild: {
     pure: isProd ? ["console.log"] : [],
-    //drop: isProd ? ["console"] : [],
+    //drop: ["console"],
   },
 })
