@@ -1,29 +1,10 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
+    "module": "esnext",
     "target": "esnext",
-    "outDir": "dist",
-    "rootDir": "../../",
-    "composite": false,
-    "lib": ["dom", "es2015"],
     "moduleResolution": "node",
     "types": ["node"],
-    "declaration": true,
-    "noImplicitAny": false,
-    "esModuleInterop": true,
-    "preserveConstEnums": true,
-    "strictNullChecks": false,
-    "skipLibCheck": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "sourceMap": true,
-    "resolveJsonModule": true,
-    "noEmit": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noImplicitReturns": true
   },
-  "include": ["./","../../dist"]
 }
 
 
