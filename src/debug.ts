@@ -5,8 +5,7 @@ import { isBrowser, stringToRgb } from "./helpers"
  * debug
  */
 // prettier-ignore
-export const debug = (namespace?: string) => (...rest: any[]): void =>
-{
+export const debug = (namespace?: string) => (...rest: any[]): void => {
   const rgb = stringToRgb(namespace)
 
   const showLog = (value: string): boolean =>
@@ -14,20 +13,25 @@ export const debug = (namespace?: string) => (...rest: any[]): void =>
       ? namespace.startsWith( value.split(":*")[0])
       : value === namespace || value === "*"
 
+  // Allow to bypass dropping of console.log from the build process
+  // tested with esbuild config: pure: ["console.log"] or drop: ["console"]
+  const log = console['log']
+
   if (isBrowser)
   {
     showLog(localStorage.getItem("debug"))
     &&
-    console.log(
+    log(
       namespace && `%c${namespace}`, `color: rgb(${rgb[0]}, ${rgb[1]}, ${rgb[2]})`,
       ...rest
     )
   }
+  
   else
-  {
+{
     showLog(process.env.DEBUG)
     &&
-    console.log(
+    log(
       namespace && couleur.bold(couleur.rgb(rgb[0], rgb[1], rgb[2])(namespace)),
       ...rest
     )
