@@ -6,9 +6,9 @@ export default defineConfig({
   splitting: false,
   clean: true,
   dts: true,
-  format: ["cjs", "esm"],
+  format: ["esm"],
   name: "debug",
-   minify: "terser",
+  minify: "terser",
   terserOptions: {
     compress: true,
   },
