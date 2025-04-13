@@ -77,7 +77,8 @@ describe("debug", () => {
     expect(consoleLogCalls.length).toBe(1)
   })
 
-  it("should log multiple arguments correctly", () => {
+  it("should log multiple arguments correctly", async () => {
+    await new Promise((resolve) => setTimeout(resolve, 1000))
     process.env.DEBUG = "test-namespace"
     const testDebug = debug("test-namespace")
     testDebug("First argument", "Second argument", { key: "value" }, 123)
