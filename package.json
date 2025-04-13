@@ -33,16 +33,18 @@
     "dev:example-node": "DEBUG=* node examples/node/index.js",
     "pre-publish": "npm run build && npm run test",
     "test:watch": "vitest",
-    "test": "vitest --run"
+    "test": "vitest --run",
+    "ncu": "find . -name 'node_modules' -prune -o -name 'package.json' -execdir ncu -u ';'",
+    "size": "size-limit"
   },
   "devDependencies": {
-    "@size-limit/preset-small-lib": "^8.2.4",
-    "@types/node": "^18.11.2",
-    "size-limit": "^9.0.0",
-    "terser": "^5.19.4",
-    "tsup": "^7.2.0",
-    "typescript": "^4.8.4",
-    "vitest": "^0.24.3"
+    "@size-limit/preset-small-lib": "^11.2.0",
+    "@types/node": "^22.14.1",
+    "size-limit": "^11.2.0",
+    "terser": "^5.39.0",
+    "tsup": "^8.4.0",
+    "typescript": "^5.8.3",
+    "vitest": "^3.1.1"
   },
   "prettier": {
     "semi": false
@@ -53,5 +55,6 @@
       "path": "dist/index.js",
       "limit": "500 B"
     }
-  ]
+  ],
+  "packageManager": "pnpm@9.14.2+sha512.6e2baf77d06b9362294152c851c4f278ede37ab1eba3a55fda317a4a17b209f4dbb973fb250a77abc463a341fcb1f17f17cfa24091c4eb319cda0d9b84278387"
 }

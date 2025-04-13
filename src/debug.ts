@@ -4,6 +4,7 @@ import { isBrowser, stringToRgb } from "./helpers"
 /**
  * debug
  */
+// prettier-ignore
 export const debug = (namespace?: string) => (...rest: any[]): void =>
 {
   const rgb = stringToRgb(namespace)
@@ -32,4 +33,3 @@ export const debug = (namespace?: string) => (...rest: any[]): void =>
     )
   }
 }
-

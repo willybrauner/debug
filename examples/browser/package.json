@@ -4,15 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "vite --host"
+    "dev": "vite --host",
+    "build": "vite build"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@wbe/debug": "^1.1.0"
+    "@wbe/debug": "workspace:*"
   },
   "devDependencies": {
-    "vite": "^3.1.8"
+    "vite": "^6.2.6"
   }
 }
