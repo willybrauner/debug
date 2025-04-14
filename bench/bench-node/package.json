@@ -1,0 +1,19 @@
+{
+  "name": "bench-node",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "tsx src/index.ts",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@wbe/debug": "workspace:*",
+    "debug": "4.4.0",
+    "chalk": "^5.3.0"
+  },
+  "devDependencies": {
+    "typescript": "~5.7.2",
+    "tsx": "^4.7.0"
+  }
+}
