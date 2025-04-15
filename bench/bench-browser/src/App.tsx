@@ -31,7 +31,7 @@ export const BenchmarkApp = () => {
     logBench("Starting browser benchmark...")
 
     // Setup for benchmarking
-    const iterations = 10000
+    const iterations = results.iterations
     const benchResults = {
       debugOriginal: 0,
       debugWbe: 0,
@@ -41,9 +41,9 @@ export const BenchmarkApp = () => {
     const logOriginal = debugOriginal("bench:original")
     const logWbe = debugWbe("bench:wbe")
 
-    // Warmup phase
+    // Warmup phase - warm up both libraries more thoroughly
     logBench("Warming up...")
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 1000; i++) {
       logOriginal("warmup")
       logWbe("warmup")
     }
@@ -59,32 +59,79 @@ export const BenchmarkApp = () => {
     // Update state with test messages
     setResults((prev) => ({ ...prev, testMessages }))
 
-    // Benchmark original debug
-    logBench("Benchmarking original debug library...")
-    const originalStart = performance.now()
-
-    for (let i = 0; i < iterations; i++) {
-      const msgIndex = i % testMessages.length
-      // Use console.time/timeEnd for more granular measurement
-      if (i % 1000 === 0) console.time("original-" + i)
-      logOriginal(testMessages[msgIndex])
-      if (i % 1000 === 0) console.timeEnd("original-" + i)
+    // Run multiple rounds of benchmarking in alternating order
+    const numberOfRounds = 4
+    const roundResults = {
+      debugOriginal: [] as number[],
+      debugWbe: [] as number[],
     }
 
-    benchResults.debugOriginal = performance.now() - originalStart
+    logBench(
+      `Running ${numberOfRounds} rounds of benchmarks in alternating order...`
+    )
 
-    // Benchmark @wbe/debug
-    logBench("Benchmarking @wbe/debug library...")
-    const wbeStart = performance.now()
+    for (let round = 0; round < numberOfRounds; round++) {
+      logBench(`Round ${round + 1}/${numberOfRounds}`)
 
-    for (let i = 0; i < iterations; i++) {
-      const msgIndex = i % testMessages.length
-      if (i % 1000 === 0) console.time("wbe-" + i)
-      logWbe(testMessages[msgIndex])
-      if (i % 1000 === 0) console.timeEnd("wbe-" + i)
+      // Determine order based on round number (alternate)
+      const runFirstSecond =
+        round % 2 === 0
+          ? [runOriginalBenchmark, runWbeBenchmark]
+          : [runWbeBenchmark, runOriginalBenchmark]
+
+      // Run benchmarks in determined order
+      await new Promise((resolve) => setTimeout(resolve, 100)) // Small pause between rounds
+      const result1 = await runFirstSecond[0]()
+      await new Promise((resolve) => setTimeout(resolve, 100)) // Small pause between tests
+      const result2 = await runFirstSecond[1]()
+
+      // Store results in correct slots regardless of execution order
+      if (round % 2 === 0) {
+        roundResults.debugOriginal.push(result1)
+        roundResults.debugWbe.push(result2)
+      } else {
+        roundResults.debugWbe.push(result1)
+        roundResults.debugOriginal.push(result2)
+      }
     }
 
-    benchResults.debugWbe = performance.now() - wbeStart
+    // Calculate average results
+    benchResults.debugOriginal =
+      roundResults.debugOriginal.reduce((a, b) => a + b, 0) / numberOfRounds
+    benchResults.debugWbe =
+      roundResults.debugWbe.reduce((a, b) => a + b, 0) / numberOfRounds
+
+    logBench("All benchmark rounds completed.")
+
+    // Function to benchmark original debug
+    async function runOriginalBenchmark() {
+      logBench("Benchmarking original debug library...")
+      const start = performance.now()
+
+      for (let i = 0; i < iterations; i++) {
+        const msgIndex = i % testMessages.length
+        logOriginal(testMessages[msgIndex])
+      }
+
+      const duration = performance.now() - start
+      logBench(`Original debug completed in ${duration.toFixed(2)}ms`)
+      return duration
+    }
+
+    // Function to benchmark @wbe/debug
+    async function runWbeBenchmark() {
+      logBench("Benchmarking @wbe/debug library...")
+      const start = performance.now()
+
+      for (let i = 0; i < iterations; i++) {
+        const msgIndex = i % testMessages.length
+        logWbe(testMessages[msgIndex])
+      }
+
+      const duration = performance.now() - start
+      logBench(`@wbe/debug completed in ${duration.toFixed(2)}ms`)
+      return duration
+    }
 
     // Display results
     logBench("Browser benchmark completed.")
@@ -147,8 +194,6 @@ export const BenchmarkApp = () => {
           {isRunning ? "Running..." : "Run Benchmark Again"}
         </button>
       </div>
-
-      {isRunning && <div className="loading">Running benchmark...</div>}
 
       {results.completed && <BenchmarkResults results={results} />}
     </div>

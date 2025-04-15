@@ -13,17 +13,15 @@ let LAST_TIME = Date.now()
  * const log = debug("myNamespace")
  * log("Hello World") // logs "myNamespace Hello World +0ms"
  */
-export const debug =
-  (namespace?: string, elapsedTime = true) =>
-  (...rest: any[]): void => {
+export const debug = (namespace?: string, elapsedTime = true) => {
+  const rgb = stringToRgb(namespace)
+
+  return (...rest: any[]): void => {
     // Calculate elapsed time since last execution
     const now = Date.now()
     const elapsed = now - LAST_TIME
     LAST_TIME = now
     const elapsedString = `+${elapsed}ms`
-
-    // Get the namespace color
-    const rgb = stringToRgb(namespace)
 
     // Define when to show the log
     const showLog = (value: string): boolean =>
@@ -83,3 +81,4 @@ export const debug =
       }
     }
   }
+}
