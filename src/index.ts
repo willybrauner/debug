@@ -10,4 +10,3 @@
  *
  */
 export { debug as default } from "./debug"
-export { couleur } from "./couleur"

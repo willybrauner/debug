@@ -1,5 +1,4 @@
-import { couleur } from "./couleur"
-import { isBrowser, stringToRgb } from "./helpers"
+import { ansiRgb, isBrowser, stringToRgb } from "./helpers"
 
 // Store timers per namespace instead of using a global timer
 let TIMERS: Record<string, number> = {}
@@ -80,7 +79,7 @@ export const debug = (namespace?: string, elapsedTime = true) => {
       /**
        * Node.js environment
        */
-      const wColor = (s: string) => couleur.rgb(rgb[0], rgb[1], rgb[2])(s)
+      const wColor = (s: string) => ansiRgb(rgb[0], rgb[1], rgb[2])(s)
       const nspace = wColor(namespace)
       elapsedTime
         ? log(nspace, ...rest, wColor(elapsedString))

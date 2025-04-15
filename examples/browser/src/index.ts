@@ -8,7 +8,9 @@ const test = async (lib) => {
   log("index log", { props: "foo" })
 
   for (let i = 0; i < 10; i++) {
-    const log = lib(`front:${i}-coucou`)
+    const log = lib(`front:${i}`)
+    await sleep(10)
+    log(`index log ${i}`)
     await sleep(10)
     log(`index log ${i}`)
     await sleep(100)
