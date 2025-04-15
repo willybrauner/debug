@@ -23,7 +23,9 @@ export const debug = (namespace?: string, elapsedTime = true) => {
 
   return (...rest: any[]): void => {
     // check if debug env exist in both environments
-    if (!showLog(isBrowser ? localStorage.getItem("debug") : process.env.DEBUG))
+    if (
+      !showLog(isBrowser() ? localStorage.getItem("debug") : process.env.DEBUG)
+    )
       return
 
     // Calculate elapsed time for each namespace to avoid global state & Cleanup if needed
@@ -47,7 +49,7 @@ export const debug = (namespace?: string, elapsedTime = true) => {
     /**
      * Browser environment
      */
-    if (isBrowser) {
+    if (isBrowser()) {
       const colorStyle = `color: rgb(${rgb[0]}, ${rgb[1]}, ${rgb[2]});`
       const args = []
 
