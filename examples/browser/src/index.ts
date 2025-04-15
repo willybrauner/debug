@@ -1,16 +1,23 @@
-import { menu } from "./Menu"
-import debug, { couleur } from "@wbe/debug"
-;(async () => {
-  const log = debug("front:index")
+import debug from "debug"
+import debugWbe from "@wbe/debug"
+
+const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
+
+const test = async (lib) => {
+  const log = lib("front:index")
   log("index log", { props: "foo" })
 
   for (let i = 0; i < 10; i++) {
-    await new Promise((resolve) =>
-      setTimeout(resolve, 100 * Math.random() + 100 / 100)
-    )
-    debug(`front:${i + "-test"}`)(`index log ${i}`)
+    const log = lib(`front:${i}`)
+    await sleep(10)
+    log(`index log ${i}`)
+    await sleep(10)
+    log(`index log ${i}`)
+    await sleep(100)
+    log(`index log ${i}`)
   }
-  debug(`front:others-types`)(
+
+  lib(`front:others-types`)(
     `new log`,
     [
       { name: "foo", value: "bar" },
@@ -22,11 +29,17 @@ import debug, { couleur } from "@wbe/debug"
     undefined,
     "foo"
   )
-  menu()
 
   console.log("native console log (should be removed by esbuild in production)")
 
   for (let i = 0; i < 3; i++) {
     console.log("native console log", i)
   }
-})()
+}
+
+for (let lib of ["debug-js/debug", "@wbe/debug"]) {
+  console.log(
+    `---------------------------------------------------  ${lib} ---------------------------------------------------`
+  )
+  await test(lib === "debug-js/debug" ? debug : debugWbe)
+}

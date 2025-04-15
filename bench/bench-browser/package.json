@@ -1,0 +1,21 @@
+{
+  "name": "browser-bench",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@wbe/debug": "workspace:*",
+    "debug": "4.4.0",
+    "preact": "^10.26.5"
+  },
+  "devDependencies": {
+    "sass": "^1.86.3",
+    "typescript": "~5.7.2",
+    "vite": "^6.2.0"
+  }
+}

@@ -11,14 +11,63 @@ export const isBrowser: boolean = !!(
  */
 export function stringToRgb(str: string): [number, number, number] {
   if (!str) return [128, 128, 128]
+  
+  // Add a salt to make numbers at the end produce different colors
+  const salt = 'x7f2q9';
+  const stringToHash = str + salt;
+  
   let hash = 0
-  for (let i = 0; i < str.length; i++) {
-    let character = str.charCodeAt(i)
+  for (let i = 0; i < stringToHash.length; i++) {
+    let character = stringToHash.charCodeAt(i)
     hash = (hash << 5) - hash + character
     hash = Math.abs(hash & hash)
   }
+  
+  // Create more variance in the RGB values
   const r = (hash & 0xff0000) >> 16
-  const g = (hash & 0x00ff00) >> 8
-  const b = hash & 0x0000ff
+  const g = ((hash >> 3) & 0x00ff00) >> 8
+  const b = ((hash >> 6) & 0x0000ff)
+  
   return [r, g, b]
+}
+
+/**
+ * ansi RGB
+ */
+export function ansiRgb(r: number, g: number, b: number) {
+  return function (str: string): string {
+    const _close = "\u001B[39m"
+
+    /**
+     * Wrapper for ansi 256 code
+     * @param code
+     */
+    const _wrapAnsi256 = (code) => `\u001B[${38};5;${code}m`
+
+    /**
+     * Convert RGB color to ansi 256
+     * @param red
+     * @param green
+     * @param blue
+     */
+    const _rgbToAnsi256 = (
+      red: number,
+      green: number,
+      blue: number
+    ): number => {
+      if (red === green && green === blue) {
+        if (red < 8) return 16
+        if (red > 248) return 231
+        return Math.round(((red - 8) / 247) * 24) + 232
+      }
+      return (
+        16 +
+        36 * Math.round((red / 255) * 5) +
+        6 * Math.round((green / 255) * 5) +
+        Math.round((blue / 255) * 5)
+      )
+    }
+
+    return _wrapAnsi256(_rgbToAnsi256(r, g, b)) + str + _close
+  }
 }
