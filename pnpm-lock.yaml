@@ -30,26 +30,7 @@ importers:
         specifier: ^3.1.1
         version: 3.1.1(@types/node@22.14.1)(jiti@2.4.2)(sass@1.86.3)(terser@5.39.0)(tsx@4.19.3)
 
-  bench/bench-node:
-    dependencies:
-      '@wbe/debug':
-        specifier: workspace:*
-        version: link:../..
-      chalk:
-        specifier: ^5.3.0
-        version: 5.4.1
-      debug:
-        specifier: 4.4.0
-        version: 4.4.0
-    devDependencies:
-      tsx:
-        specifier: ^4.7.0
-        version: 4.19.3
-      typescript:
-        specifier: ~5.7.2
-        version: 5.7.3
-
-  bench/browser-bench:
+  bench/bench-browser:
     dependencies:
       '@wbe/debug':
         specifier: workspace:*
@@ -71,11 +52,33 @@ importers:
         specifier: ^6.2.0
         version: 6.2.6(@types/node@22.14.1)(jiti@2.4.2)(sass@1.86.3)(terser@5.39.0)(tsx@4.19.3)
 
+  bench/bench-node:
+    dependencies:
+      '@wbe/debug':
+        specifier: workspace:*
+        version: link:../..
+      chalk:
+        specifier: ^5.3.0
+        version: 5.4.1
+      debug:
+        specifier: 4.4.0
+        version: 4.4.0
+    devDependencies:
+      tsx:
+        specifier: ^4.7.0
+        version: 4.19.3
+      typescript:
+        specifier: ~5.7.2
+        version: 5.7.3
+
   examples/browser:
     dependencies:
       '@wbe/debug':
         specifier: workspace:*
         version: link:../..
+      debug:
+        specifier: latest
+        version: 4.4.0
     devDependencies:
       vite:
         specifier: ^6.2.6

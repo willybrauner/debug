@@ -1,17 +1,17 @@
 import { couleur } from "./couleur"
 import { isBrowser, stringToRgb } from "./helpers"
 
-let LAST_TIME = Date.now()
+// Store timers per namespace instead of using a global timer
+let TIMERS: Record<string, number> = {}
+
+// Maximum number of namespaces to track before cleanup
+const MAX_NAMESPACES = 1000
 
 /**
  * debug
  * @param namespace - The namespace to log
+ * @param elapsedTime - Whether to show elapsed time since the last log
  * @returns A function that logs the namespace and arguments to the console
- *
- * ex:
- *  import debug from "@wbe/debug"
- * const log = debug("myNamespace")
- * log("Hello World") // logs "myNamespace Hello World +0ms"
  */
 export const debug = (namespace?: string, elapsedTime = true) => {
   const rgb = stringToRgb(namespace)
@@ -27,11 +27,19 @@ export const debug = (namespace?: string, elapsedTime = true) => {
     if (!showLog(isBrowser ? localStorage.getItem("debug") : process.env.DEBUG))
       return
 
-    // Calculate elapsed time since last execution
+    // Calculate elapsed time for each namespace to avoid global state & Cleanup if needed
     const now = Date.now()
-    const elapsed = now - LAST_TIME
-    LAST_TIME = now
-    const elapsedString = `+${elapsed}ms`
+    let elapsed = 0
+    if (TIMERS[namespace]) {
+      elapsed = now - TIMERS[namespace]
+    } else {
+      if (Object.keys(TIMERS).length >= MAX_NAMESPACES) {
+        TIMERS = {}
+      }
+    }
+    TIMERS[namespace] = now
+    const elapsedString =
+      elapsed > 1000 ? `+${Math.floor(elapsed / 1000)}s` : `+${elapsed}ms`
 
     // Allow to bypass dropping of console.log from the build process
     // has been test with esbuild drop: ["console"] & pure: ["console.log"]
@@ -41,13 +49,12 @@ export const debug = (namespace?: string, elapsedTime = true) => {
      * Browser environment
      */
     if (isBrowser) {
-      const colorStyle = `color: rgb(${rgb[0]}, ${rgb[1]}, ${rgb[2]}); font-weight: bold`
+      const colorStyle = `color: rgb(${rgb[0]}, ${rgb[1]}, ${rgb[2]});`
       const args = []
 
       // Start with the colored namespace format specifier and its style
       let format = `%c${namespace}`
       args.push(colorStyle)
-
       // Process the rest arguments
       // Use %c for strings to allow potential future styling or just display
       // Use %o for objects, arrays, etc., for better inspection
@@ -73,12 +80,11 @@ export const debug = (namespace?: string, elapsedTime = true) => {
       /**
        * Node.js environment
        */
-
-      const wColor = (s: string) =>
-        couleur.bold(couleur.rgb(rgb[0], rgb[1], rgb[2])(s))
+      const wColor = (s: string) => couleur.rgb(rgb[0], rgb[1], rgb[2])(s)
+      const nspace = wColor(namespace)
       elapsedTime
-        ? log(wColor(namespace), ...rest, wColor(elapsedString))
-        : log(wColor(namespace), ...rest)
+        ? log(nspace, ...rest, wColor(elapsedString))
+        : log(nspace, ...rest)
     }
   }
 }
