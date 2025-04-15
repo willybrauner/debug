@@ -2,8 +2,18 @@ import debugOriginal from "debug"
 import debugWbe from "@wbe/debug"
 import chalk from "chalk"
 
-// Enable logs for both libraries
+// Enable logs for both libraries but redirect to null
+// This allows the libraries to run their code paths but without the I/O overhead
 process.env.DEBUG = "*"
+
+// Redirect console output during benchmarking
+const originalConsoleLog = console.log
+const disableConsoleOutput = () => {
+  console.log = () => {}
+}
+const restoreConsoleOutput = () => {
+  console.log = originalConsoleLog
+}
 
 // Function to format numbers with commas for better readability
 const formatNumber = (num: number): string => {
@@ -48,10 +58,12 @@ class Benchmark {
     const logOriginal = debugOriginal("bench:original:warmup")
     const logWbe = debugWbe("bench:wbe:warmup")
 
+    disableConsoleOutput()
     for (let i = 0; i < this.warmupIterations; i++) {
       logOriginal("warmup")
       logWbe("warmup")
     }
+    restoreConsoleOutput()
   }
 
   /**
@@ -65,6 +77,8 @@ class Benchmark {
     )
 
     const logOriginal = debugOriginal("bench:original")
+    
+    disableConsoleOutput()
     const start = process.hrtime.bigint()
 
     for (let i = 0; i < this.iterations; i++) {
@@ -73,6 +87,8 @@ class Benchmark {
     }
 
     const end = process.hrtime.bigint()
+    restoreConsoleOutput()
+    
     this.results.debugOriginal = Number(end - start) / 1_000_000 // Convert to ms
   }
 
@@ -87,6 +103,8 @@ class Benchmark {
     )
 
     const logWbe = debugWbe("bench:wbe")
+    
+    disableConsoleOutput()
     const start = process.hrtime.bigint()
 
     for (let i = 0; i < this.iterations; i++) {
@@ -95,6 +113,8 @@ class Benchmark {
     }
 
     const end = process.hrtime.bigint()
+    restoreConsoleOutput()
+    
     this.results.debugWbe = Number(end - start) / 1_000_000 // Convert to ms
   }
 
