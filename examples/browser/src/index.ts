@@ -1,4 +1,3 @@
-import { menu } from "./Menu"
 import debug from "debug"
 import debugWbe from "@wbe/debug"
 
@@ -11,11 +10,11 @@ const test = async (lib) => {
   for (let i = 0; i < 10; i++) {
     const log = lib(`front:${i}-coucou`)
     await sleep(10)
-
     log(`index log ${i}`)
     await sleep(100)
     log(`index log ${i}`)
   }
+
   lib(`front:others-types`)(
     `new log`,
     [
@@ -28,7 +27,6 @@ const test = async (lib) => {
     undefined,
     "foo"
   )
-  menu()
 
   console.log("native console log (should be removed by esbuild in production)")
 
