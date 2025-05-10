@@ -103,8 +103,10 @@ describe("debug", () => {
     const debug3 = debug("three")
     const debug4 = debug("four")
     const debug5 = debug("fort")
+    const debug51 = debug("free");
     const debug6 = debug("five:five-test")
     const debug7 = debug("five:five-six")
+    const debug71 = debug("fiver:seven-one")
     const debug8 = debug("seven")
     
     debug1("Should log one")
@@ -112,8 +114,10 @@ describe("debug", () => {
     debug3("Should log three")
     debug4("Should log four")
     debug5("Should log fort")
+    debug51("Should not log free")
     debug6("Should log five")
     debug7("Should log six")
+    debug71("Should not log a similar colon:splat prefix")
     debug8("Should log seven")
 
     expect(consoleLogCalls.length).toBe(8)

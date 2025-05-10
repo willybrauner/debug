@@ -19,8 +19,10 @@ export const debug = (namespace?: string, elapsedTime = true) => {
   const showLog = (value: string): boolean => {
     const debugSpecs = value?.split(',');
     return debugSpecs?.some(spec => {
-      const fragment = spec.split(/(?:\*\:)|(?:\*)/)[0];
-      return value==="*" || namespace.startsWith(fragment)
+      const split = spec.split(/(\:\*)|(?:\*)/)
+      const fragment = split[0]
+      const fragmentStop = split[1] ? ":" : ""
+      return value==="*" || namespace.startsWith(`${fragment}${fragmentStop}`)
     });
   }
 
