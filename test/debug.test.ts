@@ -95,4 +95,23 @@ describe("debug", () => {
     testDebug("Should not log")
     expect(consoleLogCalls.length).toBe(0)
   })
+
+  it("should handle multiple debug namespaces", () => {
+    process.env.DEBUG = "one,two,three";
+    const debug1 = debug("one")
+    const debug2 = debug("two")
+    const debug3 = debug("three")
+    
+    debug1("Should log one")
+    debug2("Should log two")
+    debug3("Should log three")
+
+    expect(consoleLogCalls.length).toBe(3)
+    expect(consoleLogCalls[0][0]).toContain("one")
+    expect(consoleLogCalls[0][1]).toBe("Should log one")
+    expect(consoleLogCalls[1][0]).toContain("two")
+    expect(consoleLogCalls[1][1]).toBe("Should log two")
+    expect(consoleLogCalls[2][0]).toContain("three")
+    expect(consoleLogCalls[2][1]).toBe("Should log three")
+  })
 })

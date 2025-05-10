@@ -1,6 +1,6 @@
 {
   "name": "@wbe/debug",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "Tiny debug tool (~500 bytes) for terminal and browser inspired by debug-js/debug API.",
   "author": "Willy Brauner",
   "license": "MIT",

@@ -16,10 +16,14 @@ export const debug = (namespace?: string, elapsedTime = true) => {
   const rgb = stringToRgb(namespace)
 
   // Define when to show the log
-  const showLog = (value: string): boolean =>
-    value?.includes(":*")
-      ? namespace.startsWith(value.split(":*")[0])
-      : value === namespace || value === "*"
+  const showLog = (value: string): boolean => {
+    const debugSpecs = value?.split(',');
+    return debugSpecs?.some(spec =>
+      spec.includes(":*")
+        ? namespace.startsWith(spec.split(":*")[0])
+        : spec === namespace || spec === "*"
+    );
+  }
 
   return (...rest: any[]): void => {
     // check if debug env exist in both environments
