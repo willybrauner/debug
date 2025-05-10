@@ -17,7 +17,7 @@ export const debug = (namespace?: string, elapsedTime = true) => {
 
   // Define when to show the log
   const showLog = (value: string): boolean => {
-    const debugSpecs = value?.split(',');
+    const debugSpecs = value?.split(",");
     return debugSpecs?.some(spec => {
       const split = spec.split(/(\:\*)|(?:\*)/)
       const fragment = split[0]
