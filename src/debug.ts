@@ -18,11 +18,10 @@ export const debug = (namespace?: string, elapsedTime = true) => {
   // Define when to show the log
   const showLog = (value: string): boolean => {
     const debugSpecs = value?.split(',');
-    return debugSpecs?.some(spec =>
-      spec.includes(":*")
-        ? namespace.startsWith(spec.split(":*")[0])
-        : spec === namespace || spec === "*"
-    );
+    return debugSpecs?.some(spec => {
+      const fragment = spec.split(/(?:\*\:)|(?:\*)/)[0];
+      return value==="*" || namespace.startsWith(fragment)
+    });
   }
 
   return (...rest: any[]): void => {
